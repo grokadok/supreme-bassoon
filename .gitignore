@@ -7,3 +7,4 @@ ssl.*
 /*lock*
 .clever.json
 /config
+*DS_Store
