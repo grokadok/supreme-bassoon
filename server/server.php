@@ -4,8 +4,10 @@ namespace bopdev;
 
 $functions = __DIR__ . "/app/model/functions.php";
 $sqlpool = __DIR__ . "/app/model/sqlpool.php";
+$maps = __DIR__ . "/app/model/maps.php";
+$weather = __DIR__ . "/app/model/weather.php";
 $localenv = __DIR__ . "/config/env.php";
-foreach ([$sqlpool, $functions] as $value) {
+foreach ([$sqlpool, $functions, $maps, $weather] as $value) {
     require_once $value;
     unset($value);
 };

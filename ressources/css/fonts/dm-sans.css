@@ -1,0 +1,17 @@
+/* dm-sans-300 - latin */
+@font-face {
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 300;
+    src: local(""),
+        url("../fonts/dm-sans/dm-sans-v6-latin-regular.woff2") format("woff2");
+}
+
+/* dm-sans-700 - latin */
+@font-face {
+    font-family: "DM Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""),
+        url("../fonts/dm-sans/dm-sans-v6-latin-700.woff2") format("woff2");
+}

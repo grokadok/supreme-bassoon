@@ -5,11 +5,11 @@ services:
         build:
             context: .
             dockerfile: dev.Dockerfile
-        container_name: server
+        container_name: popcartetest_server
         environment:
             AUTORELOAD_PROGRAMS: "swoole"
             AUTORELOAD_ANY_FILES: 0
-            MYSQL_ADDON_HOST: "mariadb"
+            MYSQL_ADDON_HOST: "popcartetest_mysql"
             MYSQL_ADDON_USER: "user"
             MYSQL_ADDON_PASSWORD: "devonly"
             MYSQL_ADDON_DB: "db"
@@ -24,11 +24,11 @@ services:
             - ./ressources/vendor:/var/www/public/assets/vendor
             - ./ressources/fonts:/var/www/public/assets/fonts
         ports:
-            - 8080:8080
+            - 8090:8080
 
-    mariadb:
-        image: mariadb:latest
-        container_name: mariadb
+    mysql:
+        image: mysql:latest
+        container_name: popcartetest_mysql
         volumes:
             - ./database/mysql:/var/lib/mysql
         environment:
@@ -37,16 +37,15 @@ services:
             MYSQL_USER: "user"
             MYSQL_PASSWORD: "devonly"
         ports:
-            - 8087:3306
+            - 8091:3306
 
     phpmyadmin:
         image: phpmyadmin:latest
-        container_name: phpmyadmin
+        container_name: popcartetest_phpmyadmin
         restart: always
         ports:
-            - 8088:80
+            - 8092:80
         environment:
             PMA_CONTROLUSER: "pma"
             PMA_CONTROLPASS: "devonly"
-            PMA_HOST: "mariadb"
-            UPLOAD_LIMIT: "512M"
+            PMA_HOST: "popcartetest_mysql"
