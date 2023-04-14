@@ -68,8 +68,9 @@ class SQLPool
                 $tries++;
                 $this->pool->get();
                 $response = true;
+                $dbname = getenv('MYSQL_ADDON_DB');
                 $this->request([
-                    "query" => "CREATE TABLE IF NOT EXISTS `db`.`card` (
+                    "query" => "CREATE TABLE IF NOT EXISTS `$dbname`.`card` (
                     `idcard` INT NOT NULL AUTO_INCREMENT,
                     `name` VARCHAR(255) NOT NULL,
                     `city` VARCHAR(255) NOT NULL,
