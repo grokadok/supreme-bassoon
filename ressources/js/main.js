@@ -36,11 +36,9 @@ class PopCarteTest {
         // City input event listener to get autocomplete suggestions from server
         city.addEventListener("input", (value) => this.cityTimer(value));
 
-        // Logo button to get back to form if card is displayed
+        // Logo button to get back to form if on card
         logo.addEventListener("click", () => {
-            form.classList.contains("flipped-left")
-                ? this.displayForm()
-                : this.displayCard();
+            if (window.location.pathname !== "/") history.back();
         });
 
         // Card flip on click
