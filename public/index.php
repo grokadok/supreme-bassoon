@@ -8,7 +8,7 @@ foreach ($jsfiles as $jsfile) {
     $jsstring .= '<script defer src="./assets/' . $jsfile . '"></script>';
 }
 
-// Handle card display (could have been done client side)
+// Handle card display (should have been done client side)
 $content = !empty($card) ? ' card' : '';
 $titleEditor = !empty($card) ? 'flipped-left' : '';
 $titleCard = !empty($card) ? '' : 'flipped-right';
