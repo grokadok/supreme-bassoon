@@ -157,14 +157,9 @@ class PopCarteTest {
     displayCard() {
         const form = document.getElementById("form"),
             recto = document.getElementById("recto"),
-            verso = document.getElementById("verso"),
             content = document.querySelector(".content"),
             titleEditor = document.getElementById("title-editor"),
             titleCard = document.getElementById("title-card");
-
-        // recto.style.display = "";
-        // Push state to the browser
-        // Get temperature of the city
 
         // Set content .card class
         content.classList.add("card");

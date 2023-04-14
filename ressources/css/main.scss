@@ -96,6 +96,7 @@ header {
         display: flex;
         justify-content: flex-end;
         & svg {
+            flex: 1;
             max-width: 12rem;
             cursor: pointer;
         }
@@ -284,7 +285,9 @@ main {
                 cursor: pointer;
                 font-size: 18px;
                 padding: clamp(0px, 4vw, 30px);
+                user-select: none;
                 & img {
+                    height: 100%;
                     box-shadow: 0px 4px 10px 2px var(--color-grey-50);
                 }
                 & span {
@@ -359,6 +362,7 @@ footer {
         margin-block: 1rem;
         & .container {
             height: 100%;
+            width: 100%;
             justify-content: flex-start;
             & .content:not(.card) {
                 height: 100%;
