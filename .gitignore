@@ -1,11 +1,10 @@
 /node_modules
 /vendor
 /database/diagram/*.bak
-/database/diagram/diagram*.mwb
 /database/mysql
 ssl.*
 /*lock*
 .clever.json
-/config
+/config/*
 .DS_Store
 **/.DS_Store

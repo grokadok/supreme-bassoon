@@ -6,14 +6,13 @@ $functions = __DIR__ . "/app/model/functions.php";
 $sqlpool = __DIR__ . "/app/model/sqlpool.php";
 $maps = __DIR__ . "/app/model/maps.php";
 $weather = __DIR__ . "/app/model/weather.php";
+$tasks = __DIR__ . "/app/model/tasks.php";
 $localenv = __DIR__ . "/config/env.php";
-foreach ([$sqlpool, $functions, $maps, $weather] as $value) {
+foreach ([$sqlpool, $functions, $maps, $tasks, $weather] as $value) {
     require_once $value;
-    unset($value);
 };
 if (getenv('ISLOCAL')) {
     require_once $localenv;
-    unset($localenv);
 }
 
 
@@ -29,6 +28,8 @@ use \bopdev\Weather;
 
 class FWServer
 {
+    use \bopdev\Tasks;
+
     private $appname;
     private $mime = [
         "css" => "text/css",
@@ -148,11 +149,27 @@ class FWServer
         }
         // POST requests
         if ($server["request_method"] === "POST") {
-            // $res = $this->httpTask($request->post);
-            // $response->header("Content-Type", $res["type"] ?? "");
-            // $response->end(json_encode($res["content"]) ?? "");
+            $json = strpos($request->header['content-type'], "application/json") === 0;
+            $res = $this->task($json ? json_decode($request->rawContent(), true) : $request->post);
+            $response->header("Content-Type", $res["type"] ?? "");
+            $response->end(json_encode($res["content"]) ?? "");
             return;
         }
+        // Card page
+        if (strpos($request_uri, "/carte-") === 0) {
+            $idcard = substr($request_uri, 7);
+            $card = $this->db->request([
+                'query' => 'SELECT name,message,city FROM card WHERE idcard = ? LIMIT 1;',
+                'type' => 'i',
+                'content' => [$idcard],
+            ]);
+            if (empty($card)) {
+                $response->status(404);
+                unset($card);
+            }
+            require __DIR__ . "/public/index.php";
+        }
+        // Index page
         if ($request_uri === "/" || $request_uri === "/index.php") {
             require __DIR__ . "/public/index.php";
         }

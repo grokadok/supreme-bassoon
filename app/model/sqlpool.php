@@ -68,6 +68,16 @@ class SQLPool
                 $tries++;
                 $this->pool->get();
                 $response = true;
+                $this->request([
+                    "query" => "CREATE TABLE IF NOT EXISTS `db`.`card` (
+                    `idcard` INT NOT NULL AUTO_INCREMENT,
+                    `name` VARCHAR(255) NOT NULL,
+                    `city` VARCHAR(255) NOT NULL,
+                    `message` VARCHAR(4000) CHARACTER SET 'utf8mb4' NOT NULL,
+                    `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    PRIMARY KEY (`idcard`))
+                    ENGINE = InnoDB;"
+                ]);
             } catch (\Exception) {
                 sleep(1);
             }
