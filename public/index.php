@@ -2,7 +2,7 @@
 $response->header("Content-Type", "text/html; charset=utf-8");
 
 // If local environment, use dev files, else use minified files
-$jsfiles = getenv('ISLOCAL') ? ['js/fetch.js', 'js/main.js'] : ['js/custom.min.js', 'js/vendor.min.js'];
+$jsfiles = getenv('ISLOCAL') ? ['js/fetch.js', 'js/main.js'] : ['js/custom.min.js'];
 $jsstring = '';
 foreach ($jsfiles as $jsfile) {
     $jsstring .= '<script defer src="./assets/' . $jsfile . '"></script>';
