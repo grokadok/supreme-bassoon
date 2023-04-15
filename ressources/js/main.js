@@ -226,6 +226,7 @@ class PopCarteTest {
             element.value = "";
         });
         city.classList.remove("valid");
+        document.getElementById("submit").classList.remove("enabled");
     }
 
     /**
